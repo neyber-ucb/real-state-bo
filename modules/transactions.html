@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registro de transacciones inmobiliarias - Real State Bolivia">
+    <title>Registro de Transacciones - Real State Bolivia</title>
+</head>
+<body>
+    <header>
+        <h1>Real State Bolivia</h1>
+        <p>Sistema Integral de Gestión Inmobiliaria</p>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="agents.html">Agentes</a></li>
+                <li><a href="properties.html">Propiedades</a></li>
+                <li><a href="clients.html">Clientes</a></li>
+                <li><a href="transactions.html" aria-current="page">Transacciones</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Registro de Transacciones Inmobiliarias</h2>
+        
+        <form id="transactionRegistrationForm" method="post" action="#" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Información Básica</legend>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Tipo de Transacción:</legend>
+                        <ul class="radio-options">
+                            <li>
+                                <input type="radio" id="sale" name="transactionType" value="sale" required>
+                                <label for="sale">Venta</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="rental" name="transactionType" value="rental">
+                                <label for="rental">Alquiler</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="transactionDate">Fecha de Transacción:</label>
+                    <input type="date" id="transactionDate" name="transactionDate" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="transactionCode">Código de Transacción:</label>
+                    <input type="text" id="transactionCode" name="transactionCode" required 
+                           pattern="[A-Z0-9]{6,10}" 
+                           title="Entre 6-10 caracteres alfanuméricos (solo mayúsculas y números)">
+                    <small>Formato: RSBYYMM#### (RSB + Año + Mes + Número secuencial)</small>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Propiedad y Partes Involucradas</legend>
+                
+                <section class="form-field">
+                    <label for="propertyId">Propiedad:</label>
+                    <select id="propertyId" name="propertyId" required>
+                        <option value="">Seleccionar Propiedad</option>
+                        <!-- Esta lista se llenaría dinámicamente con las propiedades registradas -->
+                        <option value="1">Casa en Sopocachi - La Paz</option>
+                        <option value="2">Departamento en Calacoto - La Paz</option>
+                        <option value="3">Local Comercial en El Prado - La Paz</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="sellerId">Vendedor/Propietario:</label>
+                    <select id="sellerId" name="sellerId" required>
+                        <option value="">Seleccionar Vendedor/Propietario</option>
+                        <!-- Esta lista se llenaría dinámicamente con los clientes registrados como vendedores -->
+                        <option value="1">Juan Pérez</option>
+                        <option value="2">Empresa Constructora XYZ</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="buyerId">Comprador/Inquilino:</label>
+                    <select id="buyerId" name="buyerId" required>
+                        <option value="">Seleccionar Comprador/Inquilino</option>
+                        <!-- Esta lista se llenaría dinámicamente con los clientes registrados como compradores -->
+                        <option value="3">María López</option>
+                        <option value="4">Carlos Mamani</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="agentId">Agente Responsable:</label>
+                    <select id="agentId" name="agentId" required>
+                        <option value="">Seleccionar Agente</option>
+                        <!-- Esta lista se llenaría dinámicamente con los agentes registrados -->
+                        <option value="1">Pedro Gonzales</option>
+                        <option value="2">Ana Flores</option>
+                    </select>
+                </section>
+            </fieldset>
+            
+            <!-- Sección específica para Ventas - se mostraría/ocultaría con JavaScript según el tipo seleccionado -->
+            <fieldset id="saleDetails">
+                <legend>Detalles de Venta</legend>
+                
+                <section class="form-field">
+                    <label for="salePrice">Precio de Venta (Bs):</label>
+                    <input type="number" id="salePrice" name="salePrice" min="1" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="saleCurrency">Moneda:</label>
+                    <select id="saleCurrency" name="saleCurrency">
+                        <option value="BOB">Bolivianos (Bs)</option>
+                        <option value="USD">Dólares Americanos ($)</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Método de Pago:</legend>
+                        <ul class="radio-options">
+                            <li>
+                                <input type="radio" id="cash" name="paymentMethod" value="cash">
+                                <label for="cash">Efectivo</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="bank_transfer" name="paymentMethod" value="bank_transfer">
+                                <label for="bank_transfer">Transferencia Bancaria</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="mortgage" name="paymentMethod" value="mortgage">
+                                <label for="mortgage">Crédito Hipotecario</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="mixed" name="paymentMethod" value="mixed">
+                                <label for="mixed">Mixto</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="downPayment">Pago Inicial/Cuota Inicial (Bs):</label>
+                    <input type="number" id="downPayment" name="downPayment" min="0" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="financedAmount">Monto Financiado (Bs):</label>
+                    <input type="number" id="financedAmount" name="financedAmount" min="0" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="financingEntity">Entidad Financiera:</label>
+                    <input type="text" id="financingEntity" name="financingEntity">
+                </section>
+                
+                <section class="form-field">
+                    <label for="commissionRate">Porcentaje de Comisión (%):</label>
+                    <input type="number" id="commissionRate" name="commissionRate" min="0" max="100" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="commissionAmount">Monto de Comisión (Bs):</label>
+                    <input type="number" id="commissionAmount" name="commissionAmount" min="0" step="0.01">
+                </section>
+            </fieldset>
+            
+            <!-- Sección específica para Alquileres - se mostraría/ocultaría con JavaScript según el tipo seleccionado -->
+            <fieldset id="rentalDetails">
+                <legend>Detalles de Alquiler</legend>
+                
+                <section class="form-field">
+                    <label for="monthlyRent">Monto Mensual de Alquiler (Bs):</label>
+                    <input type="number" id="monthlyRent" name="monthlyRent" min="1" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="rentalCurrency">Moneda:</label>
+                    <select id="rentalCurrency" name="rentalCurrency">
+                        <option value="BOB">Bolivianos (Bs)</option>
+                        <option value="USD">Dólares Americanos ($)</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="contractStart">Fecha de Inicio del Contrato:</label>
+                    <input type="date" id="contractStart" name="contractStart">
+                </section>
+                
+                <section class="form-field">
+                    <label for="contractEnd">Fecha de Finalización del Contrato:</label>
+                    <input type="date" id="contractEnd" name="contractEnd">
+                </section>
+                
+                <section class="form-field">
+                    <label for="contractDuration">Duración del Contrato (meses):</label>
+                    <input type="number" id="contractDuration" name="contractDuration" min="1" max="120">
+                </section>
+                
+                <section class="form-field">
+                    <label for="deposit">Monto de Garantía/Depósito (Bs):</label>
+                    <input type="number" id="deposit" name="deposit" min="0" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Incluye:</legend>
+                        <ul class="checkbox-options">
+                            <li>
+                                <input type="checkbox" id="includes_water" name="includes" value="water">
+                                <label for="includes_water">Agua</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="includes_electricity" name="includes" value="electricity">
+                                <label for="includes_electricity">Electricidad</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="includes_gas" name="includes" value="gas">
+                                <label for="includes_gas">Gas</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="includes_internet" name="includes" value="internet">
+                                <label for="includes_internet">Internet</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="includes_furniture" name="includes" value="furniture">
+                                <label for="includes_furniture">Muebles</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="paymentDueDay">Día de Pago Mensual:</label>
+                    <input type="number" id="paymentDueDay" name="paymentDueDay" min="1" max="31">
+                </section>
+                
+                <section class="form-field">
+                    <label for="rentalCommissionRate">Porcentaje de Comisión (%):</label>
+                    <input type="number" id="rentalCommissionRate" name="rentalCommissionRate" min="0" max="100" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="rentalCommissionAmount">Monto de Comisión (Bs):</label>
+                    <input type="number" id="rentalCommissionAmount" name="rentalCommissionAmount" min="0" step="0.01">
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Documentación</legend>
+                
+                <section class="form-field">
+                    <label for="contractDocument">Contrato:</label>
+                    <input type="file" id="contractDocument" name="contractDocument" accept=".pdf,.doc,.docx">
+                    <small>Formatos aceptados: PDF, DOC, DOCX. Tamaño máximo: 10MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="paymentProof">Comprobante de Pago/Transferencia:</label>
+                    <input type="file" id="paymentProof" name="paymentProof" accept=".pdf,.jpg,.jpeg,.png">
+                    <small>Formatos aceptados: PDF, JPG, PNG. Tamaño máximo: 5MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="additionalDocuments">Documentos Adicionales:</label>
+                    <input type="file" id="additionalDocuments" name="additionalDocuments[]" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                    <small>Puede seleccionar múltiples archivos. Tamaño máximo total: 20MB</small>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Notas y Observaciones</legend>
+                
+                <section class="form-field">
+                    <label for="transactionNotes">Notas sobre la Transacción:</label>
+                    <textarea id="transactionNotes" name="transactionNotes" rows="4"></textarea>
+                </section>
+                
+                <section class="form-field">
+                    <label for="specialConditions">Condiciones Especiales:</label>
+                    <textarea id="specialConditions" name="specialConditions" rows="4"></textarea>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Estado de la Transacción</legend>
+                
+                <section class="form-field">
+                    <label for="transactionStatus">Estado:</label>
+                    <select id="transactionStatus" name="transactionStatus" required>
+                        <option value="pending">Pendiente</option>
+                        <option value="in_progress">En Proceso</option>
+                        <option value="completed">Completada</option>
+                        <option value="cancelled">Cancelada</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="completionDate">Fecha de Finalización:</label>
+                    <input type="date" id="completionDate" name="completionDate">
+                </section>
+            </fieldset>
+            
+            <div>
+                <button type="submit">Registrar Transacción</button>
+                <button type="reset">Limpiar Formulario</button>
+                <a href="../index.html" role="button">Cancelar</a>
+            </div>
+        </form>
+    </main>
+    
+    <aside>
+        <h3>Información Importante</h3>
+        <p>El registro completo de las transacciones es fundamental para el seguimiento legal y financiero.</p>
+        <p>Asegúrese de adjuntar toda la documentación necesaria para respaldar la transacción.</p>
+        <p>Las comisiones se calculan automáticamente según las políticas establecidas.</p>
+    </aside>
+    
+    <footer>
+        <p>&copy; <time datetime="2025">2025</time> Real State Bolivia - Todos los derechos reservados</p>
+        <address>
+            Contacto: <a href="mailto:info@realstatebolivia.com">info@realstatebolivia.com</a>
+        </address>
+    </footer>
+</body>
+</html>
