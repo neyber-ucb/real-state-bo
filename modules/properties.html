@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registro de propiedades inmobiliarias - Real State Bolivia">
+    <title>Registro de Propiedades - Real State Bolivia</title>
+</head>
+<body>
+    <header>
+        <h1>Real State Bolivia</h1>
+        <p>Sistema Integral de Gestión Inmobiliaria</p>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="agents.html">Agentes</a></li>
+                <li><a href="properties.html" aria-current="page">Propiedades</a></li>
+                <li><a href="clients.html">Clientes</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Registro de Propiedades Inmobiliarias</h2>
+        
+        <form id="propertyRegistrationForm" method="post" action="#" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Información Básica</legend>
+                
+                <section class="form-field">
+                    <label for="propertyTitle">Título de la Propiedad:</label>
+                    <input type="text" id="propertyTitle" name="propertyTitle" required 
+                           maxlength="100" placeholder="Ej: Casa de 3 dormitorios en Sopocachi">
+                </section>
+                
+                <section class="form-field">
+                    <label for="propertyType">Tipo de Propiedad:</label>
+                    <select id="propertyType" name="propertyType" required>
+                        <option value="">Seleccionar</option>
+                        <optgroup label="Residencial">
+                            <option value="house">Casa</option>
+                            <option value="apartment">Departamento</option>
+                            <option value="condo">Condominio</option>
+                            <option value="land">Terreno</option>
+                            <option value="country_house">Casa de Campo</option>
+                        </optgroup>
+                        <optgroup label="Comercial">
+                            <option value="office">Oficina</option>
+                            <option value="retail">Local Comercial</option>
+                            <option value="warehouse">Depósito/Galpón</option>
+                            <option value="industrial">Nave Industrial</option>
+                        </optgroup>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Modalidad de Oferta:</legend>
+                        <div>
+                            <input type="radio" id="sale" name="offerType" value="sale" required>
+                            <label for="sale">Venta</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="rent" name="offerType" value="rent">
+                            <label for="rent">Alquiler</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="anticretico" name="offerType" value="anticretico">
+                            <label for="anticretico">Anticrético</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="rent_to_own" name="offerType" value="rent_to_own">
+                            <label for="rent_to_own">Alquiler con opción a compra</label>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="price">Precio (Bs):</label>
+                    <input type="number" id="price" name="price" min="1" step="0.01" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="currency">Moneda:</label>
+                    <select id="currency" name="currency" required>
+                        <option value="BOB">Bolivianos (Bs)</option>
+                        <option value="USD">Dólares Americanos ($)</option>
+                    </select>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Ubicación</legend>
+                
+                <section class="form-field">
+                    <label for="department">Departamento:</label>
+                    <select id="department" name="department" required>
+                        <option value="">Seleccionar</option>
+                        <option value="la_paz">La Paz</option>
+                        <option value="cochabamba">Cochabamba</option>
+                        <option value="santa_cruz">Santa Cruz</option>
+                        <option value="oruro">Oruro</option>
+                        <option value="potosi">Potosí</option>
+                        <option value="chuquisaca">Chuquisaca</option>
+                        <option value="tarija">Tarija</option>
+                        <option value="beni">Beni</option>
+                        <option value="pando">Pando</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="city">Ciudad/Municipio:</label>
+                    <input type="text" id="city" name="city" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="zone">Zona/Barrio:</label>
+                    <input type="text" id="zone" name="zone" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="address">Dirección:</label>
+                    <textarea id="address" name="address" rows="2" required></textarea>
+                </section>
+                
+                <section class="form-field">
+                    <label for="coordinates">Coordenadas (opcional):</label>
+                    <input type="text" id="coordinates" name="coordinates" 
+                           placeholder="Latitud, Longitud (Ej: -16.489689, -68.119293)">
+                </section>
+                
+                <section class="form-field">
+                    <label for="reference">Referencia de ubicación:</label>
+                    <textarea id="reference" name="reference" rows="2"></textarea>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Características</legend>
+                
+                <section class="form-field">
+                    <label for="area">Superficie Total (m²):</label>
+                    <input type="number" id="area" name="area" min="1" step="0.01" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="builtArea">Superficie Construida (m²):</label>
+                    <input type="number" id="builtArea" name="builtArea" min="0" step="0.01">
+                </section>
+                
+                <section class="form-field">
+                    <label for="bedrooms">Dormitorios:</label>
+                    <input type="number" id="bedrooms" name="bedrooms" min="0" max="20">
+                </section>
+                
+                <section class="form-field">
+                    <label for="bathrooms">Baños:</label>
+                    <input type="number" id="bathrooms" name="bathrooms" min="0" max="20">
+                </section>
+                
+                <section class="form-field">
+                    <label for="garage">Garaje (capacidad):</label>
+                    <input type="number" id="garage" name="garage" min="0" max="20">
+                </section>
+                
+                <section class="form-field">
+                    <label for="yearBuilt">Año de Construcción:</label>
+                    <input type="number" id="yearBuilt" name="yearBuilt" min="1900" max="2025">
+                </section>
+                
+                <fieldset>
+                    <legend>Características Adicionales:</legend>
+                    <div>
+                        <input type="checkbox" id="furnished" name="features" value="furnished">
+                        <label for="furnished">Amoblado</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pool" name="features" value="pool">
+                        <label for="pool">Piscina</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="garden" name="features" value="garden">
+                        <label for="garden">Jardín</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="terrace" name="features" value="terrace">
+                        <label for="terrace">Terraza</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="elevator" name="features" value="elevator">
+                        <label for="elevator">Ascensor</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="security" name="features" value="security">
+                        <label for="security">Seguridad 24h</label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Descripción</legend>
+                
+                <section class="form-field">
+                    <label for="description">Descripción Detallada:</label>
+                    <textarea id="description" name="description" rows="5" required 
+                              maxlength="2000"></textarea>
+                    <small>Máximo 2000 caracteres</small>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Documentación Legal</legend>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Estado Legal:</legend>
+                        <div>
+                            <input type="radio" id="regularized" name="legalStatus" value="regularized" required>
+                            <label for="regularized">Regularizado</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="in_process" name="legalStatus" value="in_process">
+                            <label for="in_process">En proceso de regularización</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="irregular" name="legalStatus" value="irregular">
+                            <label for="irregular">Irregular</label>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="propertyTitle">Título de Propiedad:</label>
+                    <input type="file" id="propertyTitle" name="propertyTitleDoc" accept=".pdf,.jpg,.jpeg,.png">
+                    <small>Formatos aceptados: PDF, JPG, PNG. Tamaño máximo: 5MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="cadastralCertificate">Certificado Catastral:</label>
+                    <input type="file" id="cadastralCertificate" name="cadastralCertificateDoc" accept=".pdf,.jpg,.jpeg,.png">
+                    <small>Formatos aceptados: PDF, JPG, PNG. Tamaño máximo: 5MB</small>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Multimedia</legend>
+                
+                <section class="form-field">
+                    <label for="mainPhoto">Foto Principal:</label>
+                    <input type="file" id="mainPhoto" name="mainPhoto" accept="image/jpeg,image/png" required>
+                    <small>Formatos aceptados: JPG, PNG. Tamaño máximo: 5MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="additionalPhotos">Fotos Adicionales:</label>
+                    <input type="file" id="additionalPhotos" name="additionalPhotos[]" accept="image/jpeg,image/png" multiple>
+                    <small>Puede seleccionar múltiples archivos. Máximo 10 fotos.</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="videoTour">Video Tour (opcional):</label>
+                    <input type="url" id="videoTour" name="videoTour" placeholder="URL de YouTube o Vimeo">
+                </section>
+                
+                <section class="form-field">
+                    <label for="virtualTour">Tour Virtual 360° (opcional):</label>
+                    <input type="url" id="virtualTour" name="virtualTour" placeholder="URL del tour virtual">
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Información de Contacto</legend>
+                
+                <section class="form-field">
+                    <label for="agentId">Agente Responsable:</label>
+                    <select id="agentId" name="agentId" required>
+                        <option value="">Seleccionar Agente</option>
+                        <!-- Esta lista se llenaría dinámicamente con los agentes registrados -->
+                        <option value="1">Juan Pérez</option>
+                        <option value="2">María López</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="ownerName">Nombre del Propietario:</label>
+                    <input type="text" id="ownerName" name="ownerName" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="ownerPhone">Teléfono del Propietario:</label>
+                    <input type="tel" id="ownerPhone" name="ownerPhone" required 
+                           pattern="[0-9]{8}" title="Número de 8 dígitos sin espacios">
+                </section>
+                
+                <section class="form-field">
+                    <label for="ownerEmail">Email del Propietario (opcional):</label>
+                    <input type="email" id="ownerEmail" name="ownerEmail">
+                </section>
+            </fieldset>
+            
+            <section class="form-field">
+                <label for="termsAgreement">
+                    <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                    Confirmo que tengo autorización para publicar esta propiedad y acepto los 
+                    <a href="../terms.html" target="_blank">términos y condiciones</a>
+                </label>
+            </section>
+            
+            <footer class="form-actions">
+                <button type="submit">Registrar Propiedad</button>
+                <button type="reset">Limpiar Formulario</button>
+                <a href="../index.html" role="button">Cancelar</a>
+            </footer>
+        </form>
+    </main>
+    
+    <aside>
+        <h3>Información Importante</h3>
+        <p>Todas las propiedades deben contar con documentación legal actualizada.</p>
+        <p>Las fotos de alta calidad aumentan significativamente el interés en las propiedades.</p>
+    </aside>
+    
+    <footer>
+        <p>&copy; <time datetime="2025">2025</time> Real State Bolivia - Todos los derechos reservados</p>
+        <address>
+            Contacto: <a href="mailto:info@realstatebolivia.com">info@realstatebolivia.com</a>
+        </address>
+    </footer>
+</body>
+</html>
