@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestión documental inmobiliaria - Real State Bolivia">
+    <title>Gestión Documental - Real State Bolivia</title>
+</head>
+<body>
+    <header>
+        <h1>Real State Bolivia</h1>
+        <p>Sistema Integral de Gestión Inmobiliaria</p>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="agents.html">Agentes</a></li>
+                <li><a href="properties.html">Propiedades</a></li>
+                <li><a href="clients.html">Clientes</a></li>
+                <li><a href="transactions.html">Transacciones</a></li>
+                <li><a href="documents.html" aria-current="page">Documentos</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Registro y Gestión de Documentos</h2>
+        
+        <form id="documentRegistrationForm" method="post" action="#" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Información Básica del Documento</legend>
+                
+                <section class="form-field">
+                    <label for="documentTitle">Título del Documento:</label>
+                    <input type="text" id="documentTitle" name="documentTitle" required 
+                           maxlength="100" placeholder="Ej: Escritura de Propiedad Casa Sopocachi">
+                </section>
+                
+                <section class="form-field">
+                    <label for="documentType">Tipo de Documento:</label>
+                    <select id="documentType" name="documentType" required>
+                        <option value="">Seleccionar</option>
+                        <optgroup label="Documentos de Propiedad">
+                            <option value="title_deed">Escritura de Propiedad</option>
+                            <option value="folio_real">Folio Real</option>
+                            <option value="cadastral_certificate">Certificado Catastral</option>
+                            <option value="property_tax">Impuesto a la Propiedad</option>
+                            <option value="construction_permit">Permiso de Construcción</option>
+                        </optgroup>
+                        <optgroup label="Documentos de Transacción">
+                            <option value="sale_contract">Contrato de Venta</option>
+                            <option value="rental_contract">Contrato de Alquiler</option>
+                            <option value="anticretico_contract">Contrato de Anticrético</option>
+                            <option value="payment_receipt">Comprobante de Pago</option>
+                            <option value="commission_receipt">Recibo de Comisión</option>
+                        </optgroup>
+                        <optgroup label="Documentos Personales">
+                            <option value="id_card">Cédula de Identidad</option>
+                            <option value="power_of_attorney">Poder Notarial</option>
+                            <option value="marriage_certificate">Certificado de Matrimonio</option>
+                            <option value="death_certificate">Certificado de Defunción</option>
+                        </optgroup>
+                        <optgroup label="Documentos Legales">
+                            <option value="legal_report">Informe Legal</option>
+                            <option value="lawsuit">Demanda Judicial</option>
+                            <option value="court_resolution">Resolución Judicial</option>
+                            <option value="inheritance_document">Documento de Sucesión</option>
+                        </optgroup>
+                        <optgroup label="Otros Documentos">
+                            <option value="appraisal">Avalúo</option>
+                            <option value="inspection_report">Informe de Inspección</option>
+                            <option value="photos">Fotografías</option>
+                            <option value="other">Otro</option>
+                        </optgroup>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="otherDocumentType">Especificar otro tipo:</label>
+                    <input type="text" id="otherDocumentType" name="otherDocumentType" 
+                           placeholder="Complete solo si seleccionó 'Otro'">
+                </section>
+                
+                <section class="form-field">
+                    <label for="documentDescription">Descripción:</label>
+                    <textarea id="documentDescription" name="documentDescription" rows="3" 
+                              maxlength="500" placeholder="Breve descripción del contenido del documento"></textarea>
+                    <small>Máximo 500 caracteres</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="documentDate">Fecha del Documento:</label>
+                    <input type="date" id="documentDate" name="documentDate" required>
+                </section>
+                
+                <section class="form-field">
+                    <label for="expirationDate">Fecha de Vencimiento (si aplica):</label>
+                    <input type="date" id="expirationDate" name="expirationDate">
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Relación del Documento</legend>
+                
+                <section class="form-field">
+                    <label for="relatedEntity">Relacionado con:</label>
+                    <select id="relatedEntity" name="relatedEntity" required>
+                        <option value="">Seleccionar</option>
+                        <option value="property">Propiedad</option>
+                        <option value="client">Cliente</option>
+                        <option value="agent">Agente</option>
+                        <option value="transaction">Transacción</option>
+                        <option value="company">Empresa</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </section>
+                
+                <section id="propertySelection" class="conditional-field">
+                    <label for="propertyId">Propiedad:</label>
+                    <select id="propertyId" name="propertyId">
+                        <option value="">Seleccionar Propiedad</option>
+                        <!-- Esta lista se llenaría dinámicamente con las propiedades registradas -->
+                        <option value="1">Casa en Sopocachi - La Paz</option>
+                        <option value="2">Departamento en Calacoto - La Paz</option>
+                        <option value="3">Local Comercial en El Prado - La Paz</option>
+                    </select>
+                </section>
+                
+                <section id="clientSelection" class="conditional-field">
+                    <label for="clientId">Cliente:</label>
+                    <select id="clientId" name="clientId">
+                        <option value="">Seleccionar Cliente</option>
+                        <!-- Esta lista se llenaría dinámicamente con los clientes registrados -->
+                        <option value="1">Juan Pérez</option>
+                        <option value="2">María López</option>
+                    </select>
+                </section>
+                
+                <section id="agentSelection" class="conditional-field">
+                    <label for="agentId">Agente:</label>
+                    <select id="agentId" name="agentId">
+                        <option value="">Seleccionar Agente</option>
+                        <!-- Esta lista se llenaría dinámicamente con los agentes registrados -->
+                        <option value="1">Pedro Gonzales</option>
+                        <option value="2">Ana Flores</option>
+                    </select>
+                </section>
+                
+                <section id="transactionSelection" class="conditional-field">
+                    <label for="transactionId">Transacción:</label>
+                    <select id="transactionId" name="transactionId">
+                        <option value="">Seleccionar Transacción</option>
+                        <!-- Esta lista se llenaría dinámicamente con las transacciones registradas -->
+                        <option value="1">Venta Casa Sopocachi - RSB2501001</option>
+                        <option value="2">Alquiler Dpto. Calacoto - RSB2502001</option>
+                    </select>
+                </section>
+                
+                <section class="form-field">
+                    <label for="otherRelation">Especificar otra relación:</label>
+                    <input type="text" id="otherRelation" name="otherRelation" 
+                           placeholder="Complete solo si seleccionó 'Otro'">
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Archivo del Documento</legend>
+                
+                <section class="form-field">
+                    <label for="documentFile">Archivo Principal:</label>
+                    <input type="file" id="documentFile" name="documentFile" required 
+                           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.tif">
+                    <small>Formatos aceptados: PDF, DOC, DOCX, JPG, PNG, TIF. Tamaño máximo: 20MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <label for="additionalFiles">Archivos Adicionales:</label>
+                    <input type="file" id="additionalFiles" name="additionalFiles[]" multiple 
+                           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.tif">
+                    <small>Puede seleccionar múltiples archivos. Tamaño máximo total: 50MB</small>
+                </section>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Estado del Documento:</legend>
+                        <div>
+                            <input type="radio" id="original" name="documentStatus" value="original" required>
+                            <label for="original">Original</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="copy" name="documentStatus" value="copy">
+                            <label for="copy">Copia</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="certified_copy" name="documentStatus" value="certified_copy">
+                            <label for="certified_copy">Copia Legalizada</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="digital" name="documentStatus" value="digital">
+                            <label for="digital">Digital</label>
+                        </div>
+                    </fieldset>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Información Legal</legend>
+                
+                <section class="form-field">
+                    <label for="issuingAuthority">Autoridad Emisora:</label>
+                    <input type="text" id="issuingAuthority" name="issuingAuthority" 
+                           placeholder="Ej: Notaría de Fe Pública N° 5, DDRR La Paz">
+                </section>
+                
+                <section class="form-field">
+                    <label for="notaryNumber">Número de Notaría (si aplica):</label>
+                    <input type="text" id="notaryNumber" name="notaryNumber">
+                </section>
+                
+                <section class="form-field">
+                    <label for="registrationNumber">Número de Registro/Partida:</label>
+                    <input type="text" id="registrationNumber" name="registrationNumber">
+                </section>
+                
+                <section class="form-field">
+                    <label for="legalObservations">Observaciones Legales:</label>
+                    <textarea id="legalObservations" name="legalObservations" rows="3"></textarea>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Ubicación Física (si aplica)</legend>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>¿Dónde se guarda el documento físico?</legend>
+                        <div>
+                            <input type="radio" id="office" name="physicalLocation" value="office">
+                            <label for="office">Oficina</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="safe_deposit" name="physicalLocation" value="safe_deposit">
+                            <label for="safe_deposit">Caja Fuerte</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="external_storage" name="physicalLocation" value="external_storage">
+                            <label for="external_storage">Almacenamiento Externo</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="with_client" name="physicalLocation" value="with_client">
+                            <label for="with_client">Con el Cliente</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="no_physical" name="physicalLocation" value="no_physical">
+                            <label for="no_physical">No hay documento físico</label>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="storageDetails">Detalles de Almacenamiento:</label>
+                    <input type="text" id="storageDetails" name="storageDetails" 
+                           placeholder="Ej: Archivador A, Carpeta 5, Estante 2">
+                </section>
+                
+                <section class="form-field">
+                    <label for="responsiblePerson">Persona Responsable:</label>
+                    <input type="text" id="responsiblePerson" name="responsiblePerson">
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Seguimiento y Alertas</legend>
+                
+                <section class="form-field">
+                    <label for="reminderDate">Fecha de Recordatorio:</label>
+                    <input type="date" id="reminderDate" name="reminderDate">
+                </section>
+                
+                <section class="form-field">
+                    <label for="reminderNote">Nota de Recordatorio:</label>
+                    <textarea id="reminderNote" name="reminderNote" rows="2" 
+                              placeholder="Ej: Renovar documento, verificar estado"></textarea>
+                </section>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Prioridad:</legend>
+                        <div>
+                            <input type="radio" id="low_priority" name="priority" value="low">
+                            <label for="low_priority">Baja</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="medium_priority" name="priority" value="medium" checked>
+                            <label for="medium_priority">Media</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="high_priority" name="priority" value="high">
+                            <label for="high_priority">Alta</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="urgent" name="priority" value="urgent">
+                            <label for="urgent">Urgente</label>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="notifyEmails">Emails para Notificaciones:</label>
+                    <input type="text" id="notifyEmails" name="notifyEmails" 
+                           placeholder="Separar múltiples emails con comas">
+                    <small>Las notificaciones se enviarán cuando se acerque la fecha de vencimiento o recordatorio</small>
+                </section>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Acceso y Confidencialidad</legend>
+                
+                <section class="form-field">
+                    <fieldset>
+                        <legend>Nivel de Confidencialidad:</legend>
+                        <div>
+                            <input type="radio" id="public" name="confidentialityLevel" value="public" checked>
+                            <label for="public">Público (Todos los usuarios)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="internal" name="confidentialityLevel" value="internal">
+                            <label for="internal">Interno (Solo personal autorizado)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="restricted" name="confidentialityLevel" value="restricted">
+                            <label for="restricted">Restringido (Solo gerencia)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="confidential" name="confidentialityLevel" value="confidential">
+                            <label for="confidential">Confidencial (Acceso mínimo)</label>
+                        </div>
+                    </fieldset>
+                </section>
+                
+                <section class="form-field">
+                    <label for="accessNotes">Notas de Acceso:</label>
+                    <textarea id="accessNotes" name="accessNotes" rows="2" 
+                              placeholder="Instrucciones especiales sobre quién puede acceder a este documento"></textarea>
+                </section>
+            </fieldset>
+            
+            <div>
+                <button type="submit">Registrar Documento</button>
+                <button type="reset">Limpiar Formulario</button>
+                <a href="../index.html" role="button">Cancelar</a>
+            </div>
+        </form>
+    </main>
+    
+    <aside>
+        <h3>Información Importante</h3>
+        <p>La gestión documental adecuada es fundamental para el respaldo legal de todas las operaciones inmobiliarias.</p>
+        <p>Asegúrese de digitalizar todos los documentos importantes y mantener un registro de su ubicación física.</p>
+        <p>Configure recordatorios para documentos con fecha de vencimiento para evitar problemas legales.</p>
+    </aside>
+    
+    <footer>
+        <p>&copy; <time datetime="2025">2025</time> Real State Bolivia - Todos los derechos reservados</p>
+        <address>
+            Contacto: <a href="mailto:info@realstatebolivia.com">info@realstatebolivia.com</a>
+        </address>
+    </footer>
+</body>
+</html>
